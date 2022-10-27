@@ -10,7 +10,7 @@ class AdvUser(AbstractUser):
         verbose_name='Прошел активацию?'
     )
 
-    send_messages = models.BigAutoField(
+    send_messages = models.BooleanField(
         default=True,
         verbose_name='Присылать оповещения о новых комментариях?'
     )
