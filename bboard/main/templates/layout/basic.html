@@ -20,25 +20,25 @@
         <div class="row">
             <ul class="col nav justify-content-end border">
                 <li class="nav-item"><a class="nav-link"
-                href="{% url 'main:register' %}">Регистрация</a></li>
+                href="#">Регистрация</a></li>
                 {% if user.is_authenticated %}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown"
                     href="#" role="button" aria-haspopup="true"
                     aria-expanded="false">Профиль</a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="{% url 'main:profile' %}">Мои объявления</a>
-                        <a class="dropdown-item" href="{% url 'main:profile_change' %}">Изменить личные
+                        <a class="dropdown-item" href="#">Мои объявления</a>
+                        <a class="dropdown-item" href="#">Изменить личные
                         данные</a>
-                        <a class="dropdown-item" href="{% url 'main:password_change' %}">Изменить пароль</a>
+                        <a class="dropdown-item" href="#">Изменить пароль</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{% url 'main:logout' %}">Выйти</a>
+                        <a class="dropdown-item" href="#">Выйти</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{% url 'main:profile_delete' %}">Удалить</a>
+                        <a class="dropdown-item" href="#">Удалить</a>
                     </div>
                 </li>
                 {% else %}
-                <li class="nav-item"><a class="nav-link" href="{% url 'main:login' %}">Вход</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Вход</a></li>
                 {% endif %}
             </ul>
         </div>
@@ -51,7 +51,7 @@
                 <span class="nav-link root font-weight-bold">
                 {{ rubric.super_rubric.name }}</span>
                 {% endifchanged %}
-                <a class="nav-link" href="{% url 'main:by_rubric' pk=rubric.pk %}">
+                <a class="nav-link" href="#">
                 {{ rubric.name }}</a>
                 {% endfor %}
                 <a class="nav-link root" href="{% url 'main:other' page='about' %}">
