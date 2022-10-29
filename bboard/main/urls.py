@@ -7,11 +7,23 @@ from .views import (
     BBLoginView,
     BBLogoutView,
     ChangeUserInfoView,
-    BBPasswordChangeView
+    BBPasswordChangeView,
+    RegisterUserView,
+    RegisterDoneView
 )
 
 app_name = 'main'
 urlpatterns = [
+    path(
+        'accounts/register/done/',
+        RegisterDoneView.as_view(),
+        name='register_done'
+    ),
+    path(
+        'accounts/register/',
+        RegisterUserView.as_view(),
+        name='register'
+    ),
     path(
         'accounts/login/',
         BBLoginView.as_view(),
