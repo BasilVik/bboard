@@ -4,6 +4,7 @@ from .views import (
     index,
     other_page,
     profile,
+    user_activate,
     BBLoginView,
     BBLogoutView,
     ChangeUserInfoView,
@@ -14,6 +15,11 @@ from .views import (
 
 app_name = 'main'
 urlpatterns = [
+    path(
+        'accounts/register/activate/<str:sign>/',
+        user_activate,
+        name='register_activate'
+    ),
     path(
         'accounts/register/done/',
         RegisterDoneView.as_view(),
