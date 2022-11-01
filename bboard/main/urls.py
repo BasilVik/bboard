@@ -10,7 +10,8 @@ from .views import (
     ChangeUserInfoView,
     BBPasswordChangeView,
     RegisterUserView,
-    RegisterDoneView
+    RegisterDoneView,
+    DeleteUserView
 )
 
 app_name = 'main'
@@ -49,6 +50,11 @@ urlpatterns = [
         'accounts/profile/change/',
         ChangeUserInfoView.as_view(),
         name='profile_change'
+    ),
+    path(
+        'accounts/profile/delete/',
+        DeleteUserView.as_view(),
+        name='profile_delete'
     ),
     path(
         'accounts/profile/',
