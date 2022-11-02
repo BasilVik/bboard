@@ -1,7 +1,7 @@
 from django.contrib import admin
 import datetime
 
-from .models import AdvUser
+from .models import AdvUser, SubRubric, SuperRubric
 from .utilities import send_activation_notification
 
 
@@ -52,4 +52,13 @@ class AdvUserAdmin(admin.ModelAdmin):
     actions = (send_activation_notifications,)
 
 
-admin.site.register(AdvUser, AdvUserAdmin)
+class SubRubricInLine(admin.TabularInline):
+    model = SubRubric
+
+
+class SuperRubricAdmin(admin.ModelAdmin):
+    exclude = ('super_rubric',)
+    inlines = (SubRubricInLine,)
+
+
+admin.site.register(AdvUser, AdvUserAdmin, SuperRubric, SuperRubricAdmin)
