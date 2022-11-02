@@ -3,6 +3,7 @@ import datetime
 
 from .models import AdvUser, SubRubric, SuperRubric
 from .utilities import send_activation_notification
+from .forms import SubRubricForm
 
 
 def send_activation_notifications(modeladmin, request, queryset):
@@ -61,4 +62,15 @@ class SuperRubricAdmin(admin.ModelAdmin):
     inlines = (SubRubricInLine,)
 
 
-admin.site.register(AdvUser, AdvUserAdmin, SuperRubric, SuperRubricAdmin)
+class SubRubricAdmin(admin.ModelAdmin):
+    form = SubRubricForm
+
+
+admin.site.register(
+    AdvUser,
+    AdvUserAdmin,
+    SuperRubric,
+    SuperRubricAdmin,
+    SubRubric,
+    SubRubricAdmin
+)
