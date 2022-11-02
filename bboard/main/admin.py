@@ -53,6 +53,9 @@ class AdvUserAdmin(admin.ModelAdmin):
     actions = (send_activation_notifications,)
 
 
+admin.site.register(AdvUser, AdvUserAdmin)
+
+
 class SubRubricInLine(admin.TabularInline):
     model = SubRubric
 
@@ -62,15 +65,11 @@ class SuperRubricAdmin(admin.ModelAdmin):
     inlines = (SubRubricInLine,)
 
 
+admin.site.register(SuperRubric, SuperRubricAdmin)
+
+
 class SubRubricAdmin(admin.ModelAdmin):
     form = SubRubricForm
 
 
-admin.site.register(
-    AdvUser,
-    AdvUserAdmin,
-    SuperRubric,
-    SuperRubricAdmin,
-    SubRubric,
-    SubRubricAdmin
-)
+admin.site.register(SubRubric, SubRubricAdmin)
