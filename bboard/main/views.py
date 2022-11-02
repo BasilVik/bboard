@@ -60,6 +60,10 @@ def user_activate(request, sign):
     return render(request, template)
 
 
+def by_rubric(request, pk):
+    pass
+
+
 class BBLoginView(LoginView):
     template_name = 'main/login.html'
 

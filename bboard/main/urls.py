@@ -5,6 +5,7 @@ from .views import (
     other_page,
     profile,
     user_activate,
+    by_rubric,
     BBLoginView,
     BBLogoutView,
     ChangeUserInfoView,
@@ -84,6 +85,11 @@ urlpatterns = [
         'accounts/profile/',
         profile,
         name='profile'
+    ),
+    path(
+        '<int:pk>/',
+        by_rubric,  # type: ignore
+        name='by_rubric'
     ),
     path(
         '<str:page>/',
