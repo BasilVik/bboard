@@ -102,7 +102,7 @@ class Bb(models.Model):
         verbose_name='Товар'
     )
     content = models.TextField(
-        verbose_name='Товар'
+        verbose_name='Описание'
     )
     price = models.FloatField(
         default=0,
