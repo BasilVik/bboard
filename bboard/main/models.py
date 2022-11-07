@@ -20,6 +20,11 @@ class AdvUser(AbstractUser):
         verbose_name='Присылать оповещения о новых комментариях?'
     )
 
+    def delete(self, *args, **kwargs):
+        for bb in self.bb_set.all():  # type: ignore
+            bb.delete()
+        super().delete(*args, **kwargs)
+
     class Meta(AbstractUser.Meta):
         pass
 
