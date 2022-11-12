@@ -1,25 +1,11 @@
 from django.urls import path
 
-from .views import (
-    index,
-    other_page,
-    profile,
-    user_activate,
-    by_rubric,
-    detail,
-    profile_bb_detail,
-    BBLoginView,
-    BBLogoutView,
-    ChangeUserInfoView,
-    BBPasswordChangeView,
-    RegisterUserView,
-    RegisterDoneView,
-    DeleteUserView,
-    BBPasswordResetCompleteView,
-    BBPasswordResetConfirmView,
-    BBPasswordResetDoneView,
-    BBPasswordResetView
-)
+from .views import (BBLoginView, BBLogoutView, BBPasswordChangeView,
+                    BBPasswordResetCompleteView, BBPasswordResetConfirmView,
+                    BBPasswordResetDoneView, BBPasswordResetView,
+                    ChangeUserInfoView, DeleteUserView, RegisterDoneView,
+                    RegisterUserView, by_rubric, detail, index, other_page,
+                    profile, profile_bb_add, profile_bb_detail, user_activate)
 
 app_name = 'main'
 urlpatterns = [
@@ -82,6 +68,11 @@ urlpatterns = [
         'accounts/profile/delete/',
         DeleteUserView.as_view(),
         name='profile_delete'
+    ),
+    path(
+        'accounts/profile/add/',
+        profile_bb_add,  # type: ignore
+        name='profile_bb_add'
     ),
     path(
         'accounts/profile/<int:pk>/',
