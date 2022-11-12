@@ -6,6 +6,7 @@ from .views import (
     profile,
     user_activate,
     by_rubric,
+    detail,
     BBLoginView,
     BBLogoutView,
     ChangeUserInfoView,
@@ -85,6 +86,11 @@ urlpatterns = [
         'accounts/profile/',
         profile,
         name='profile'
+    ),
+    path(
+        '<int:rubric_pk>/<int:pk>/',
+        detail,
+        name='detail'
     ),
     path(
         '<int:pk>/',

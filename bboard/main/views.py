@@ -62,6 +62,16 @@ def user_activate(request, sign):
     return render(request, template)
 
 
+def detail(request, rubric_pk, pk):
+    bb = get_object_or_404(Bb, pk=pk)
+    ais = bb.additionalimage_set.all()  # type: ignore
+    context = {
+        'bb': bb,
+        'ais': ais
+    }
+    return render(request, 'main/detail.html', context)
+
+
 def by_rubric(request, pk):
     rubric = get_object_or_404(SubRubric, pk=pk)
     bbs = Bb.objects.filter(is_active=True, rubric=pk)
