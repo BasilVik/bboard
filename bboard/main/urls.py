@@ -7,6 +7,7 @@ from .views import (
     user_activate,
     by_rubric,
     detail,
+    profile_bb_detail,
     BBLoginView,
     BBLogoutView,
     ChangeUserInfoView,
@@ -81,6 +82,11 @@ urlpatterns = [
         'accounts/profile/delete/',
         DeleteUserView.as_view(),
         name='profile_delete'
+    ),
+    path(
+        'accounts/profile/<int:pk>/',
+        profile_bb_detail,
+        name='profile_bb_detail'
     ),
     path(
         'accounts/profile/',

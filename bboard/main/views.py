@@ -30,7 +30,11 @@ from .utilities import signer
 
 
 def index(request):
-    return render(request, 'main/index.html')
+    bbs = Bb.objects.filter(is_active=True)[:10]
+    context = {
+        'bbs': bbs
+    }
+    return render(request, 'main/index.html', context)
 
 
 def other_page(request, page):
@@ -43,7 +47,11 @@ def other_page(request, page):
 
 @login_required
 def profile(request):
-    return render(request, 'main/profile.html')
+    bbs = Bb.objects.filter(author=request.user.pk)
+    context = {
+        'bbs': bbs
+    }
+    return render(request, 'main/profile.html', context)
 
 
 def user_activate(request, sign):
@@ -72,25 +80,34 @@ def detail(request, rubric_pk, pk):
     return render(request, 'main/detail.html', context)
 
 
+@login_required
+def profile_bb_detail(request, pk):
+    bb = get_object_or_404(Bb, pk=pk)
+    ais = bb.additionalimage_set.all()  # type: ignore
+    context = {
+        'bb': bb,
+        'ais': ais
+    }
+    return render(request, 'main/profile_bb_detail.html', context)
+
+
 def by_rubric(request, pk):
     rubric = get_object_or_404(SubRubric, pk=pk)
     bbs = Bb.objects.filter(is_active=True, rubric=pk)
+    keyword = ''
     if 'keyword' in request.GET:
         keyword = request.GET['keyword']
         q = Q(title__incontains=keyword) | Q(content__icontains=keyword)
         bbs = bbs.filter(q)
-    else:
-        keyword = ''
     form = SearchForm(
         initial={
             'keyword': keyword
         }
     )
     paginator = Paginator(bbs, 2)
+    page_num = 1
     if 'page' in request.GET:
         page_num = request.GET['page']
-    else:
-        page_num = 1
     page = paginator.get_page(page_num)
     context = {
         'rubric': rubric,
