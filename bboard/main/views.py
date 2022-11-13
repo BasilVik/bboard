@@ -136,18 +136,18 @@ def profile_bb_add(request):
                     'Объявление добавлено'
                 )
                 return redirect('main:profile')
-        else:
-            form = BbForm(
-                initial={
-                    'author': request.user.pk
-                }
-            )
-            formset = AIFormSet()
-        context = {
-            'form': form,
-            'formset': formset
-        }
-        return render(request, 'main/profile_bb_add.html', context)
+    else:
+        form = BbForm(
+            initial={
+                'author': request.user.pk
+            }
+        )
+        formset = AIFormSet()
+    context = {
+        'form': form,
+        'formset': formset
+    }
+    return render(request, 'main/profile_bb_add.html', context)
 
 
 @login_required  # type: ignore
