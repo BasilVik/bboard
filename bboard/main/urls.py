@@ -5,7 +5,8 @@ from .views import (BBLoginView, BBLogoutView, BBPasswordChangeView,
                     BBPasswordResetDoneView, BBPasswordResetView,
                     ChangeUserInfoView, DeleteUserView, RegisterDoneView,
                     RegisterUserView, by_rubric, detail, index, other_page,
-                    profile, profile_bb_add, profile_bb_detail, user_activate)
+                    profile, profile_bb_add, profile_bb_detail, user_activate,
+                    profile_bb_change, profile_bb_delete)
 
 app_name = 'main'
 urlpatterns = [
@@ -68,6 +69,16 @@ urlpatterns = [
         'accounts/profile/delete/',
         DeleteUserView.as_view(),
         name='profile_delete'
+    ),
+    path(
+        'accounts/profile/change/<int:pk>',
+        profile_bb_change,
+        name='profile_bb_change'
+    ),
+    path(
+        'accounts/profile/delete/<int:pk>',
+        profile_bb_delete,
+        name='profile_bb_delete'
     ),
     path(
         'accounts/profile/add/',
